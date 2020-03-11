@@ -17,6 +17,8 @@ namespace ReactNet
 {
     public class Startup
     {
+        private DbInitializer dbInitializer;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -48,6 +50,9 @@ namespace ReactNet
             services.AddSession();
             services.AddMemoryCache();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            var sp = services.BuildServiceProvider();
+            dbInitializer = new DbInitializer(sp.GetService<UserManager<AppUser>>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,7 +72,9 @@ namespace ReactNet
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
+            app.UseCookiePolicy();
+            app.UseSession();
+            app.UseAuthentication();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -86,6 +93,8 @@ namespace ReactNet
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+
+            dbInitializer.Seed(app);
         }
     }
 }

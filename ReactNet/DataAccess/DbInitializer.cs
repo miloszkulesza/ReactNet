@@ -21,21 +21,24 @@ namespace ReactNet.DataAccess
 
         public async void Seed(IApplicationBuilder app)
         {
-            ApplicationDbContext context = app.ApplicationServices.GetRequiredService<ApplicationDbContext>();
+            ApplicationDbContext context = app.ApplicationServices.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
             context.Database.Migrate();
             if(!context.Categories.Any())
             {
                 context.Categories.AddRange(
                     new Category
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = "Smartfony"
                     },
                     new Category
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = "Laptopy"
                     },
                     new Category
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = "Tablety"
                     }
                 );
@@ -46,6 +49,7 @@ namespace ReactNet.DataAccess
                 context.Products.AddRange(
                     new Product
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = "Xiaomi Mi 9T",
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Smartfony"),
                         Quantity = 5,
@@ -57,6 +61,7 @@ namespace ReactNet.DataAccess
                     },
                     new Product
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = "Motorola One 4/64GB Dual SIM",
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Smartfony"),
                         Quantity = 20,
@@ -67,6 +72,7 @@ namespace ReactNet.DataAccess
                     },
                     new Product
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = "Huawei P20 Dual SIM 64GB",
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Smartfony"),
                         Quantity = 15,
@@ -77,6 +83,7 @@ namespace ReactNet.DataAccess
                     },
                     new Product
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = "OnePlus 6T 8/256GB Dual SIM",
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Smartfony"),
                         Quantity = 6,
@@ -87,6 +94,7 @@ namespace ReactNet.DataAccess
                     },
                     new Product
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = "ASUS ZenFone 4 ZE554KL 4",
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Smartfony"),
                         Quantity = 18,
@@ -97,6 +105,7 @@ namespace ReactNet.DataAccess
                     },
                     new Product
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = "HP Pavilion Gaming i5-9300H/16GB/256/Win10x GTX1650",
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Laptopy"),
                         Description = "Gotuj się do walki. Gamingowy laptop HP Pavilion 15 wprowadzi Cię na pola wirtualnych bitew, oddając do dyspozycji arsenał, który poprowadzi Cię do niezliczonych zwycięstw. Wyposażony został w wyselekcjonowane, ultrawydajne komponenty, m.in. w procesor Intel Core i5 9. generacji oraz kartę graficzną GeForce GTX. Z takim zapleczem technologicznym Twoi rywale mogą co najwyżej przygotowywać się do odwrotu.",
@@ -107,6 +116,7 @@ namespace ReactNet.DataAccess
                     },
                     new Product
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = "ASUS TUF Gaming FX505DU-AL079T",
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Laptopy"),
                         Description = "Gotuj się do walki. Gamingowy laptop ASUS TUF Gaming FX705DU wprowadzi Cię na pola wirtualnych bitew, oddając do dyspozycji arsenał, który poprowadzi Cię do niezliczonych zwycięstw. Wyposażony został w wyselekcjonowane, ultrawydajne komponenty, m.in. w procesor AMD Ryzen 7 oraz kartę graficzną GeForce GTX. Z takim zapleczem technologicznym Twoi rywale mogą co najwyżej przygotowywać się do odwrotu.",
@@ -117,6 +127,7 @@ namespace ReactNet.DataAccess
                     },
                     new Product
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = "Lenovo Legion Y740-17",
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Laptopy"),
                         Description = "Gotuj się do walki. Gamingowy laptop Lenovo Legion Y740-17 wprowadzi Cię na pola wirtualnych bitew, oddając do dyspozycji arsenał, który poprowadzi Cię do niezliczonych zwycięstw. Wyposażony został w wyselekcjonowane, ultrawydajne komponenty, m.in. w procesor Intel Core i7 9. generacji oraz kartę graficzną GeForce RTX 2070 Max-Q. Z takim zapleczem technologicznym Twoi rywale mogą co najwyżej przygotowywać się do odwrotu.",
@@ -127,6 +138,7 @@ namespace ReactNet.DataAccess
                     },
                     new Product
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = "Dell Inspiron G5 i7-9750H",
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Laptopy"),
                         Description = "Płynna, komfortowa rozgrywka bez lagów i opóźnień to rzecz niezbędna, jeśli w ferworze rywalizacji gamingowej nie chcesz stać się mięsem armatnim. Z Dell Inspiron G5 nie zginiesz, bo to laptop stworzony, by zwyciężać. Za wydajność odpowiadają procesor Intel Core i7 w duecie z kartą graficzną NVIDIA GeForce RTX. Twoim oknem na pole bitwy jest natomiast ekran z częstotliwością odświeżania 144 Hz, za którym maluje się płynny, wyrazisty obraz.",
@@ -137,6 +149,7 @@ namespace ReactNet.DataAccess
                     },
                     new Product
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = "ASUS VivoBook S530FA",
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Laptopy"),
                         Description = "VivoBook S15 wniesie nieco więcej charakteru do Twojego aktywnego stylu życia, oferując nowe, odważne wzornictwo, bardzo lekką konstrukcję, a także nowatorski ekran NanoEdge z trzema wąskimi ramkami i zawiasem ErgoLift.",
@@ -147,6 +160,7 @@ namespace ReactNet.DataAccess
                     },
                     new Product
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = "Samsung Galaxy TAB S6 10.5 T865 LTE 6/128GB",
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Tablety"),
                         Description = "Odkryj moc komputera zamkniętą w mobilnej formie szarego tabletu Samsung Galaxy Tab S6 LTE. Ultra-smukła, aluminiowa konstrukcja o grubości zaledwie 5,7 mm mieści w sobie moc flagowego procesora Snapdragon 855 oraz bezkompromisową wytrzymałość baterii 7040 mAh. Całość przykrywa ekran 10,5 z bajecznie kolorową matrycą Super AMOLED, którą obsłużysz udoskonalonym rysikiem S-Pen, teraz obsługującym również gesty. Całość uzupełnia rewelacyjny podwójny aparat i nieograniczony dostęp do błyskawicznego internetu za sprawą wbudowanego modemu LTE.",
@@ -162,16 +176,19 @@ namespace ReactNet.DataAccess
                 context.Roles.AddRange(
                     new IdentityRole
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = "Administrator",
                         NormalizedName = "Administrator"
                     },
                     new IdentityRole
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = "Użytkownik",
                         NormalizedName = "Użytkownik"
                     },
                     new IdentityRole
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = "Pracownik",
                         NormalizedName = "Pracownik"
                     }
@@ -181,6 +198,7 @@ namespace ReactNet.DataAccess
             {
                 AppUser admin = new AppUser
                 {
+                    Id = Guid.NewGuid().ToString(),
                     UserName = "administrator@example.com",
                     FirstName = "Administrator",
                     LastName = "Systemu",
