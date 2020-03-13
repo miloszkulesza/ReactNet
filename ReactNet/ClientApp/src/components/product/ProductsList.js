@@ -16,8 +16,8 @@ export class ProductsList extends Component {
     async getProductsList() {
         const response = await fetch('product');
         const data = await response.json();
-        data.forEach((product) => {
-            product.imagePath = "/images/products/" + product.imageName;
+        data.forEach(product => {
+            product.imagePath = `/images/products/${product.imageName}`;
         });
         this.setState({ products: data, loading: false });
         
