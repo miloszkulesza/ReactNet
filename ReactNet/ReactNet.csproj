@@ -28,6 +28,28 @@
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\images\banner1.svg" />
+    <None Include="wwwroot\images\banner2.svg" />
+    <None Include="wwwroot\images\banner3.svg" />
+    <None Include="wwwroot\images\icons\category-icon.png" />
+    <None Include="wwwroot\images\icons\orders-icon.png" />
+    <None Include="wwwroot\images\icons\product-icon.png" />
+    <None Include="wwwroot\images\icons\user-groups-icon.png" />
+    <None Include="wwwroot\images\icons\users-icon.png" />
+    <None Include="wwwroot\images\products\asus-tuf-fx705du-1.jpg" />
+    <None Include="wwwroot\images\products\asus-vivobook-s15-1.jpg" />
+    <None Include="wwwroot\images\products\asus-zenfone-1.jpg" />
+    <None Include="wwwroot\images\products\dell-g5-i7-1.jpg" />
+    <None Include="wwwroot\images\products\galaxy-tab-s6-1.jpg" />
+    <None Include="wwwroot\images\products\hp-pavilion-gaming-1.jpg" />
+    <None Include="wwwroot\images\products\huawei-p20-1.jpg" />
+    <None Include="wwwroot\images\products\lenovo-y740-1.jpg" />
+    <None Include="wwwroot\images\products\mi-9t-1.jpg" />
+    <None Include="wwwroot\images\products\motorola-one-1.png" />
+    <None Include="wwwroot\images\products\oneplus-6t-1.jpg" />
+  </ItemGroup>
+
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

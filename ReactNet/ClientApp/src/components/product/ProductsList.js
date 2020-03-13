@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import { ProductCard } from './ProductCard';
 
 export class ProductsList extends Component {
     static displayName = ProductsList.name;
@@ -12,41 +13,20 @@ export class ProductsList extends Component {
         this.getProductsList();
     }
 
-    static renderProductsTable(products) {
-        return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>Nazwa</th>
-                        <th>Opis</th>
-                        <th>Ilość</th>
-                        <th>Cena</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {products.map(product =>
-                        <tr key={product.id}>
-                            <td>{product.name.toString()}</td>
-                            <td>{product.description.toString()}</td>
-                            <td>{product.quantity.toString()}</td>
-                            <td>{product.price.toString()}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
-        );
-    }
-
     async getProductsList() {
         const response = await fetch('product');
         const data = await response.json();
+        data.forEach((product) => {
+            product.imagePath = "/images/products/" + product.imageName;
+        });
         this.setState({ products: data, loading: false });
+        
     }
 
     render() {
         let contents = this.state.loading
             ? <p><em>Ładowanie...</em></p>
-            : ProductsList.renderProductsTable(this.state.products);
+            : this.state.products.map(product => <ProductCard product={product} />);
 
         return (
             <div>
