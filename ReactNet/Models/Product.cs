@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,5 +19,7 @@ namespace ReactNet.Models
         public DateTime DateOfAddition { get; set; }
         public Category Category { get; set; }
         public bool IsHidden { get; set; } = false;
+        [ForeignKey("CategoryId")]
+        public string CategoryId { get; set; }
     }
 }

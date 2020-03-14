@@ -20,9 +20,18 @@ namespace ReactNet.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public IEnumerable<Product> Get(string categoryId)
         {
-            return productRepository.Products.Where(x => x.Quantity > 0 && !x.IsHidden).ToArray();
+            Product[] products;
+            if(string.IsNullOrEmpty(categoryId) || categoryId == "all")
+            {
+                products = productRepository.Products.Where(x => x.Quantity > 0 && !x.IsHidden).ToArray();
+            }
+            else
+            {
+                products = productRepository.Products.Where(x => x.Quantity > 0 && !x.IsHidden && x.CategoryId == categoryId).ToArray();
+            }
+            return products;
         }
     }
 }
