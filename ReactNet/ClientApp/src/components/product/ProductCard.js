@@ -25,6 +25,6 @@ export class ProductCard extends Component {
                     <a className="btn btn-primary" style={{ float: "right" }} href="#">Do koszyka</a>
                 </div>
             </div>
-            );
+        );
     }
 }

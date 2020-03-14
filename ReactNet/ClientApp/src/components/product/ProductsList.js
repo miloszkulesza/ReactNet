@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { ProductCard } from './ProductCard';
 import { CategoriesList } from './CategoriesList';
+import { LoadingGif } from '../layout/LoadingGif';
 
 export class ProductsList extends Component {
     static displayName = ProductsList.name;
@@ -13,8 +14,8 @@ export class ProductsList extends Component {
         };
     }
 
-    async componentDidMount() {
-        await this.getProductsList();
+    componentDidMount() {
+        this.getProductsList();
     }
 
     async getProductsList(selectedCategoryId) {
@@ -41,9 +42,7 @@ export class ProductsList extends Component {
                     <CategoriesList parentCallback={this.selectedCategoryCallback} />
                 </div>
                 <div className="col-10">
-                    {loading ?
-                        <img src="/images/icons/loading.gif" style={{ position: "fixed", top: (window.screen.height/2)-300, left: (window.screen.width / 2)-250, zIndex: 3 }} />
-                        : products.map(product => <ProductCard product={product} />)}
+                    {loading ? <LoadingGif /> : products.map(product => <ProductCard product={product} />)}
                 </div>
             </div>
         );
