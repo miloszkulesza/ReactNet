@@ -29,8 +29,7 @@ export class ProductsList extends Component {
         data.forEach(product => {
             product.imagePath = `/images/products/${product.imageName}`;
         });
-        this.setState({ products: data, loading: false });        
-        console.log(this.state);
+        this.setState({ products: data,  loading: false });        
     }
 
     render() {
@@ -42,8 +41,9 @@ export class ProductsList extends Component {
                     <CategoriesList parentCallback={this.selectedCategoryCallback} />
                 </div>
                 <div className="col-10">
-                    {this.loading && <p>Ładowanie</p>}
-                    {!loading && products.map(product => <ProductCard product={product} />) }
+                    {loading ?
+                        <img src="/images/icons/loading.gif" style={{ position: "fixed", top: (window.screen.height/2)-300, left: (window.screen.width / 2)-250, zIndex: 3 }} />
+                        : products.map(product => <ProductCard product={product} />)}
                 </div>
             </div>
         );
@@ -52,6 +52,5 @@ export class ProductsList extends Component {
     selectedCategoryCallback = (selectedCategoryId) => {
         this.setState({ loading: true });
         this.getProductsList(selectedCategoryId);
-        this.forceUpdate();
     }
 }

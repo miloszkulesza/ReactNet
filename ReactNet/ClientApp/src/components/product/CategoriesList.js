@@ -20,10 +20,10 @@ export class CategoriesList extends Component {
     }
 
     render() {
-        let contents = this.state.categories.map(category => <a className="list-group-item list-group-item-action" onClick={this.handleClick.bind(this, category.id)} id={category.id}>{category.name}</a>);
+        let contents = this.state.categories.map(category => <a className="list-group-item list-group-item-action" onClick={this.handleClick.bind(this, category.id)} id={category.id} key={category.id}>{category.name}</a>);
         return (
             <div className="list-group" style={{ position: "fixed", minWidth: "150px" }}>
-                <a  onClick={this.handleClick.bind(this, "all")} className="list-group-item list-group-item-action selectedCategory bg-primary text-white" id="all">Wszystkie</a>
+                <a  onClick={this.handleClick.bind(this, "all")} className="list-group-item list-group-item-action selectedCategory bg-primary text-white" id="all" key="all">Wszystkie</a>
                 {contents}
             </div>
         );
