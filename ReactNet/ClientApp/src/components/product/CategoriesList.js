@@ -33,7 +33,7 @@ export class CategoriesList extends Component {
             </CategoryContext.Consumer>
         );
         return (
-            <div className="list-group" style={{ position: "fixed", minWidth: "150px" }}>
+            <div className="list-group">
                 <CategoryContext.Consumer>
                     {(context) => (
                         <div onClick={() => {

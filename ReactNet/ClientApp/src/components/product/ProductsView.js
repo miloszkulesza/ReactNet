@@ -14,10 +14,10 @@ export class ProductsView extends Component {
         return (
             <CategoryProvider>
                 <div className="row">
-                        <div className="col-2">
+                        <div className="col-sm-12 col-lg-2">
                             <CategoriesList parentCallback={this.selectedCategoryCallback} />
                         </div>
-                        <div className="col-10">
+                        <div className="col-sm-12 col-lg-10">
                             <ProductsList dataFromParent={this.state.categoryId} />
                         </div>
                 </div>

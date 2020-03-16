@@ -3,8 +3,8 @@
 export class LoadingGif extends Component {
     render() {
         return (
-            <img src="/images/icons/loading.gif" 
-            style={{ position: "fixed", top: (window.screen.height / 2) - 300, left: (window.screen.width / 2) - 250, zIndex: 3 }} 
+            <img src="/images/icons/loading.gif"
+                style={{ position: "fixed", top: (window.innerHeight / 2) - 300, left: (window.innerWidth / 2) - 250, zIndex: 3 }} 
             alt="loading" />
         );
     }
