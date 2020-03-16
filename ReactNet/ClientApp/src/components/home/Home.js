@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { ProductsList } from '../product/ProductsList';
+import { ProductsView } from '../product/ProductsView';
 
 export class Home extends Component {
   static displayName = Home.name;
 
   render () {
     return (
-      <ProductsList />
+      <ProductsView />
     );
   }
 }

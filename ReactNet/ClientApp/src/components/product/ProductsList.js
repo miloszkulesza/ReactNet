@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { ProductCard } from './ProductCard';
-import { CategoriesList } from './CategoriesList';
 import { LoadingGif } from '../layout/LoadingGif';
+import { CategoryContext } from './CategoryProvider';
 
 export class ProductsList extends Component {
     static displayName = ProductsList.name;
@@ -14,8 +14,8 @@ export class ProductsList extends Component {
         };
     }
 
-    componentDidMount() {
-        this.getProductsList();
+    async componentDidMount() {
+        await this.getProductsList();
     }
 
     async getProductsList(selectedCategoryId) {
@@ -30,26 +30,25 @@ export class ProductsList extends Component {
         data.forEach(product => {
             product.imagePath = `/images/products/${product.imageName}`;
         });
-        this.setState({ products: data,  loading: false });        
+        this.setState({ products: data, loading: false });        
     }
 
     render() {
         const { loading, products } = this.state;
-        
+
         return (
-            <div className="row">
-                <div className="col-2">
-                    <CategoriesList parentCallback={this.selectedCategoryCallback} />
-                </div>
-                <div className="col-10">
-                    {loading ? <LoadingGif /> : products.map(product => <ProductCard product={product} />)}
-                </div>
+            <div>
+                <CategoryContext.Consumer>
+                    {(context) => (<h1>{context.state.selectedCategoryName}</h1>)}
+                </CategoryContext.Consumer>
+                <hr />
+                {loading ? <LoadingGif /> : products.map(product => <ProductCard product={product} key={product.id} />)}
             </div>
         );
     }
 
-    selectedCategoryCallback = (selectedCategoryId) => {
+    componentWillReceiveProps(categoryId) {
         this.setState({ loading: true });
-        this.getProductsList(selectedCategoryId);
+        setTimeout(async () => { await this.getProductsList(categoryId.dataFromParent); }, 2000);
     }
 }

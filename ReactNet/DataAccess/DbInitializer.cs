@@ -22,7 +22,6 @@ namespace ReactNet.DataAccess
         public async void Seed(IApplicationBuilder app)
         {
             ApplicationDbContext context = app.ApplicationServices.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            context.Database.Migrate();
             if(!context.Categories.Any())
             {
                 context.Categories.AddRange(
