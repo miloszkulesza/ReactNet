@@ -9,7 +9,7 @@ using ReactNet.Models;
 namespace ReactNet.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ProductController : Controller
     {
         private IProductRepository productRepository;
@@ -20,7 +20,8 @@ namespace ReactNet.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Product> Get(string categoryId)
+        [Route("getProducts")]
+        public IEnumerable<Product> GetProducts(string categoryId)
         {
             Product[] products;
             if(string.IsNullOrEmpty(categoryId) || categoryId == "all")
@@ -32,6 +33,13 @@ namespace ReactNet.Controllers
                 products = productRepository.Products.Where(x => x.Quantity > 0 && !x.IsHidden && x.CategoryId == categoryId).ToArray();
             }
             return products;
+        }
+
+        [HttpGet]
+        [Route("getProduct")]
+        public Product GetProduct(string productId)
+        {
+            return productRepository.Products.FirstOrDefault(x => x.Id.Equals(productId));
         }
     }
 }

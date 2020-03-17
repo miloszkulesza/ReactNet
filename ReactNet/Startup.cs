@@ -50,6 +50,7 @@ namespace ReactNet
             services.AddSession();
             services.AddMemoryCache();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddControllers();
 
             var sp = services.BuildServiceProvider();
             dbInitializer = new DbInitializer(sp.GetService<UserManager<AppUser>>());

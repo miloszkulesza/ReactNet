@@ -21,10 +21,10 @@ export class ProductsList extends Component {
     async getProductsList(selectedCategoryId) {
         let response;
         if (selectedCategoryId != null) {
-            response = await fetch(`product?categoryId=${selectedCategoryId}`);
+            response = await fetch(`api/product/getProducts?categoryId=${selectedCategoryId}`);
         }
         else {
-            response = await fetch('product');
+            response = await fetch('api/product/getProducts');
         }
         let data = await response.json();
         data.forEach(product => {

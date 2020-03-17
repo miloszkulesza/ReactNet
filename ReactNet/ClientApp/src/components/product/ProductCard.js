@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export class ProductCard extends Component {
     constructor(props) {
@@ -11,9 +12,9 @@ export class ProductCard extends Component {
     render() {
         return (
             <div className="card" style={{ marginBottom: 15 + "px" }} key={this.state.product.id}>
-                <a href="#">
+                <Link to={`/productDetails/${this.state.product.id}`}>
                     <h5 className="card-header">{this.state.product.name}</h5>
-                </a>
+                </Link>
                 <div className="card-body">
                     <a href="#">
                         <img src={this.state.product.imagePath} className="img-thumbnail align-content-center" style={{ float: "left", height: 170 + "px", marginRight: 10 + "px" }} />
@@ -22,7 +23,7 @@ export class ProductCard extends Component {
                 </div>
                 <div className="card-footer">
                     <b style={{ fontSize: 22 + "px" }}>{this.state.product.price} PLN</b>
-                    <a className="btn btn-primary" style={{ float: "right" }} href="#">Do koszyka</a>
+                    <a className="btn btn-primary" style={{ float: "right" }}>Do koszyka</a>
                 </div>
             </div>
         );
