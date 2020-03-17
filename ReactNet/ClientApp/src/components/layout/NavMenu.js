@@ -3,6 +3,7 @@ import { NavbarBrand, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
 import { CartSummary } from '../cart/CartSummary';
+import { SearchBar } from './SearchBar';
 
 export class NavMenu extends Component {
     static displayName = NavMenu.name;
@@ -41,10 +42,7 @@ export class NavMenu extends Component {
                                     <NavLink tag={Link} to="/regulations">Regulamin</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <form className="form-inline" method="post">
-                                        <input className="form-control mr-sm-2" type="search" placeholder="Napisz czego szukasz..." aria-label="Search" name="id" />
-                                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
-                                    </form>
+                                    <SearchBar />
                                 </NavItem>
                             </ul>
                             <CartSummary />
