@@ -12,6 +12,7 @@ export class SearchBar extends Component {
 
     render() {
         if (this.state.redirect) {
+            this.setState({redirect: false});
             return (
                 <div>
                     <Redirect to={{
@@ -20,16 +21,12 @@ export class SearchBar extends Component {
                             keywords: this.state.searchKeywords
                         }
                     }} />
-                    <form className="form-inline" onSubmit={this.handleSearchSubmit}>
-                        <input className="form-control mr-sm-2" type="search" placeholder="Napisz czego szukasz..." aria-label="Search" name="id" onChange={this.handleSearchInputChange.bind(this)} />
-                        <input className="btn btn-outline-success my-2 my-sm-0" type="submit" value="Szukaj" />
-                    </form>
                 </div>
             );
         }
         return(
             <form className="form-inline" onSubmit={this.handleSearchSubmit}>
-                <input className="form-control mr-sm-2" type="search" placeholder="Napisz czego szukasz..." aria-label="Search" name="id" onChange={this.handleSearchInputChange.bind(this)} />
+                <input className="form-control mr-sm-2" type="search" placeholder="Napisz czego szukasz..." aria-label="Search" onChange={this.handleSearchInputChange.bind(this)} />
                 <input className="btn btn-outline-success my-2 my-sm-0" type="submit" value="Szukaj" />
             </form>
         );
@@ -47,7 +44,7 @@ export class SearchBar extends Component {
             let text = this.state.searchKeywords;
             this.setState({ searchKeywords: text, redirect: true})
         } else {
-            alert("Wpisz frazê do wyszukania");
+            alert("Wpisz fraze do wyszukania");
         }
     };
 }
