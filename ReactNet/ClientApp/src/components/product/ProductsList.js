@@ -42,7 +42,7 @@ export class ProductsList extends Component {
                     {(context) => (<h1>{context.state.selectedCategoryName}</h1>)}
                 </CategoryContext.Consumer>
                 <hr />
-                {loading ? <LoadingGif /> : products.map(product => <ProductCard product={product} key={product.id} />)}
+                {loading ? <LoadingGif /> : products.map(product => <ProductCard product={product} key={product.id} history={this.props.history}/>)}
             </div>
         );
     }

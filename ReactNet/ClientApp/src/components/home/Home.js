@@ -6,7 +6,7 @@ export class Home extends Component {
 
   render () {
     return (
-      <ProductsView />
+      <ProductsView history={this.props.history} />
     );
   }
 }

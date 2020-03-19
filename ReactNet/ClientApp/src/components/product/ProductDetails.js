@@ -8,7 +8,8 @@ export class ProductDetails extends Component {
         this.state = {
             productId: this.props.match.params.productId,
             product: {},
-            loading: true
+            loading: true,
+            search: this.props.location.state.search
         }
     }
 
@@ -39,11 +40,23 @@ export class ProductDetails extends Component {
                     <b>Cena: </b> {this.state.product.price} PLN<br />
                     <b>Ilość: </b> {this.state.product.quantity} szt.<br /><br />
                     <div class="btn btn-primary" style={{ marginRight: "10px" }}>Dodaj do koszyka</div>
-                    <Link to="/">
-                        <div class="btn btn-info">Powrót</div>
-                    </Link>
+                    <div class="btn btn-info" onClick={this.handleGoBack}>Powrót</div>
                 </div>
             );
+        }
+    }
+
+    handleGoBack = () => {
+        if(this.state.search){
+            this.props.history.push({
+                pathname: '/searchProducts',
+                state: {
+                    keywords: this.state.search
+                }
+            });
+        }
+        else{
+            this.props.history.goBack();
         }
     }
 }

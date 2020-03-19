@@ -11,7 +11,8 @@ export class SearchBar extends Component {
     render() {
         return(
             <form className="form-inline" onSubmit={this.handleSearchSubmit}>
-                <input className="form-control mr-sm-2" type="search" placeholder="Napisz czego szukasz..." aria-label="Search" onChange={this.handleSearchInputChange.bind(this)} />
+                <input className="form-control mr-sm-2" type="search" placeholder="Napisz czego szukasz..." aria-label="Search" 
+                onChange={this.handleSearchInputChange.bind(this)} value={this.state.searchKeywords} />
                 <input className="btn btn-outline-success my-2 my-sm-0" type="submit" value="Szukaj" />
             </form>
         );
@@ -25,12 +26,13 @@ export class SearchBar extends Component {
         e.preventDefault();
         if (this.state.searchKeywords) {
             let text = this.state.searchKeywords;
+            this.setState({searchKeywords: ""});
             this.props.history.push({
                 pathname: 'searchProducts',
                 state: {
                     keywords: text
                 }
-            })
+            });
         } else {
             alert("Wpisz fraze do wyszukania");
         }

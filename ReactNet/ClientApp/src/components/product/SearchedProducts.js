@@ -14,8 +14,8 @@ export class SearchedProducts extends Component {
     }
 
     handleSearch = () => {
-        this.setState({ loading: true });
         let searchText = this.props.location.state.keywords;
+        this.setState({ loading: true, keywords: searchText });
         fetch('api/search', {
             method: 'post',
             headers: {
@@ -30,6 +30,9 @@ export class SearchedProducts extends Component {
                 this.setState({ products: products, responseOk: response.ok, loading: false });
                 this.forceUpdate();
             }
+        }).catch(() => {
+            this.setState({ loading: false, responseOk: false });
+            this.forceUpdate();
         });
     }
 
@@ -46,21 +49,31 @@ export class SearchedProducts extends Component {
     }
 
     render() {
-        const { products, responseOk, loading } = this.state;
+        const { products, responseOk, loading, keywords } = this.state;
         if (loading) {
             return (<LoadingGif />);
         }
-        if(responseOk) {
-            return (
-                <div>
-                    {products.map(product => <ProductCard product={product} />)}
-                </div>
-            );
-        }
         else {
-            return (
-                <h1>Nie znaleziono wyszukiwanej frazy</h1>
-            );
+            if (responseOk) {
+                return (
+                    <div>
+                        {products.map(product => <ProductCard product={product} history={this.props.history} search={keywords} />)}
+                        <button className="btn btn-primary" onClick={this.handleGoBack}>Powrót</button>
+                    </div>
+                );
+            }
+            else {
+                return (
+                    <div>
+                        <h1>Nie znaleziono wyszukiwanej frazy</h1>
+                        <button className="btn btn-primary" onClick={this.handleGoBack}>Powrót</button>
+                    </div>
+                );
+            }
         }
+    }
+
+    handleGoBack = () => {
+        this.props.history.goBack();
     }
 }

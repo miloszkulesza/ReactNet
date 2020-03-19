@@ -18,7 +18,7 @@ export class ProductsView extends Component {
                             <CategoriesList parentCallback={this.selectedCategoryCallback} />
                         </div>
                         <div className="col-sm-12 col-lg-10">
-                            <ProductsList dataFromParent={this.state.categoryId} />
+                            <ProductsList dataFromParent={this.state.categoryId} history={this.props.history} />
                         </div>
                 </div>
             </CategoryProvider>

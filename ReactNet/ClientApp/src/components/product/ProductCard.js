@@ -5,20 +5,23 @@ export class ProductCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            product: props.product
+            product: props.product,
+            search: props.search
         };
     }
 
     render() {
         return (
-            <div className="card" style={{ marginBottom: 15 + "px" }} key={this.state.product.id}>
-                <Link to={`/productDetails/${this.state.product.id}`}>
-                    <h5 className="card-header">{this.state.product.name}</h5>
-                </Link>
+            <div className="card nav" style={{ marginBottom: 15 + "px" }} key={this.state.product.id}>
+                <h5 className="card-header" onClick={this.handleProductDetails}>
+                    <Link>
+                        {this.state.product.name}
+                    </Link>
+                </h5>
                 <div className="card-body">
-                    <a href="#">
-                        <img src={this.state.product.imagePath} className="img-thumbnail align-content-center" style={{ float: "left", height: 170 + "px", marginRight: 10 + "px" }} />
-                    </a>
+                        <img src={this.state.product.imagePath} className="img-thumbnail align-content-center" 
+                            style={{ float: "left", height: 170 + "px", marginRight: 10 + "px", cursor: "pointer" }}
+                            onClick={this.handleProductDetails} alt="productImage" />
                     <p className="card-text text-justify">{this.state.product.description}</p>
                 </div>
                 <div className="card-footer">
@@ -27,5 +30,14 @@ export class ProductCard extends Component {
                 </div>
             </div>
         );
+    }
+
+    handleProductDetails = () => {
+        this.props.history.push({
+            pathname: `/productDetails/${this.state.product.id}`,
+            state: {
+                search: this.props.search
+            }
+        });
     }
 }
