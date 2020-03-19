@@ -1,29 +1,14 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 
 export class SearchBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchKeywords: "",
-            redirect: false,
+            searchKeywords: ""
         }
     }
 
     render() {
-        if (this.state.redirect) {
-            this.setState({redirect: false});
-            return (
-                <div>
-                    <Redirect to={{
-                        pathname: "/searchProducts",
-                        state: {
-                            keywords: this.state.searchKeywords
-                        }
-                    }} />
-                </div>
-            );
-        }
         return(
             <form className="form-inline" onSubmit={this.handleSearchSubmit}>
                 <input className="form-control mr-sm-2" type="search" placeholder="Napisz czego szukasz..." aria-label="Search" onChange={this.handleSearchInputChange.bind(this)} />
@@ -33,8 +18,6 @@ export class SearchBar extends Component {
     }
 
     handleSearchInputChange(input) {
-        if(this.state.redirect)
-            this.setState({redirect: false});
         this.setState({ searchKeywords: input.currentTarget.value });
     }
 
@@ -42,7 +25,12 @@ export class SearchBar extends Component {
         e.preventDefault();
         if (this.state.searchKeywords) {
             let text = this.state.searchKeywords;
-            this.setState({ searchKeywords: text, redirect: true})
+            this.props.history.push({
+                pathname: 'searchProducts',
+                state: {
+                    keywords: text
+                }
+            })
         } else {
             alert("Wpisz fraze do wyszukania");
         }

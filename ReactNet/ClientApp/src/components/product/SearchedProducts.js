@@ -46,7 +46,7 @@ export class SearchedProducts extends Component {
     }
 
     render() {
-        const { products, responseOk, keywords, loading } = this.state;
+        const { products, responseOk, loading } = this.state;
         if (loading) {
             return (<LoadingGif />);
         }

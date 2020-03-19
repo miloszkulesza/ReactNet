@@ -4,13 +4,16 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import '@fortawesome/fontawesome-free/js/all.min.js'
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import { BrowserRouter } from 'react-router-dom';
 
 const rootElement = document.getElementById('root');
 
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(
+<BrowserRouter>
+    <App />
+</BrowserRouter>, rootElement);
 
 registerServiceWorker();
 

@@ -49,6 +49,6 @@ export class ProductsList extends Component {
 
     componentWillReceiveProps(categoryId) {
         this.setState({ loading: true });
-        setTimeout(async () => { await this.getProductsList(categoryId.dataFromParent); }, 2000);
+        setTimeout(async () => { await this.getProductsList(categoryId.dataFromParent); }, 500);
     }
 }
